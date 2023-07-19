@@ -28,6 +28,7 @@ private slots:
     void incrProgBar();
     void setColorProgBar();
     void setColorTextProgBar();
+    void setOnOff();
 
 private:
     Ui::MainWindow *ui;

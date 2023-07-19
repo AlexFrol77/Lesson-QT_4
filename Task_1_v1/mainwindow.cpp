@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->pb_userProgress, SIGNAL(clicked()), this, SLOT(incrProgBar()));
     connect(ui->pb_userProgress, SIGNAL(clicked()), this, SLOT(setColorProgBar()));
     connect(ui->pb_userProgress, SIGNAL(clicked()), this, SLOT(setColorTextProgBar()));
+    connect(ui->pb_userProgress, SIGNAL(toggled(bool)), this, SLOT(setOnOff()));
 }
 
 MainWindow::~MainWindow()
@@ -52,6 +53,7 @@ void MainWindow::incrProgBar()
 void MainWindow::setToolPushButton()
 {
     ui->pb_userProgress->setText("Increase Progress Bar");
+    ui->pb_userProgress->setCheckable(true);
 }
 
 void MainWindow::setToolRadioButton()
@@ -116,5 +118,16 @@ void MainWindow::setColorTextProgBar()
         ui->lb_userProgress->setStyleSheet("color: blue;");
     }
     ui->statusbar->showMessage("Color selection : " + ui->cb_listChangesColorTextPb->currentText());
+}
+
+void MainWindow::setOnOff()
+{
+    if (!ui->pb_userProgress->isChecked()) {
+        ui->pb_userProgress->setText("Off");
+        ui->pb_userProgress->setStyleSheet("background-color: red;");
+    } else {
+        ui->pb_userProgress->setText("On");
+        ui->pb_userProgress->setStyleSheet("background-color: green;");
+    }
 }
 
